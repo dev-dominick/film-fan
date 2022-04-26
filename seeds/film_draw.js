@@ -1,3 +1,7 @@
+require('dotenv').config();
+const fetch = require('node-fetch');
+const fs = require('fs');
+
 const apiKey = process.env.OMDB_API_KEY
 
 //The following is a copy-paste taken from https://www.imdb.com/chart/top/
@@ -277,7 +281,28 @@ function listSlice(filmList, dotCount, num) {
     }
 }
 
-console.log(filmList2);
+const jsonList = []
+function seedMovieData(filmList) {
+    for (i=0; i<filmList.length; i++) {
+    const newQueryURL = `https://www.omdbapi.com/?t=${filmList[i]}&apikey=${apiKey}`;
+    fetch(newQueryURL)
+        .then(function (response) {
+            return response.json();
+        })
+        .then((data) => {
+            const movie = {};
+            movie.title = data.Title;
+            movie.year = data.Year;
+            movie.rating = data.Rated;
+            movie.genre = data.Genre;
+            movie.poster = data.Poster;
+            movie.director = data.Director;
+            movie.plot = data.Plot;
+            jsonList.push(movie);
+        })
+        .then(fs.writeFile('./seeds/movieData.json', JSON.stringify(jsonList), err => { if (err) {console.error(err);}}))
+        }
+    }
 
-// var newQueryURL = `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
+seedMovieData(filmList2)
 
