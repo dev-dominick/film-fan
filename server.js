@@ -6,6 +6,7 @@ const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
+// store session data to persist through server errors
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
@@ -14,6 +15,7 @@ const PORT = process.env.PORT || 3001;
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
 
+// move secret into env file
 const sess = {
   secret: 'Super secret secret',
   cookie: {},
