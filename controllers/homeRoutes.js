@@ -17,13 +17,23 @@ router.get('/', async (req, res) => {
       ],
     });
 
+    const movieData = await Movie.findAll({
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: ['userName'],
+      //   },
+      // ],
+    });
+
     // Serialize data so the template can read it
     const reviews = reviewData.map((review) => review.get({ plain: true }));
-
+    const movies = movieData.map((movie) => movie.get({ plain: true }));
     // Pass serialized data and session flag into template
     // What page do you want to render the reviews onto???????
     res.render('homepage', { 
       reviews, 
+      movies,
       logged_in: req.session.logged_in 
     });
   } catch (err) {
