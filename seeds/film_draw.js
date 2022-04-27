@@ -285,14 +285,15 @@ function listSlice(filmList, dotCount, num) {
 
 //Fetching data from OMDb, writing the result to the json file.
 const jsonList = []
-function seedMovieData(filmList) {
-    for (i=0; i<filmList.length; i++) {
+async function seedMovieData(filmList) {
+    for (let i=0; i<filmList.length; i++) {
     const newQueryURL = `https://www.omdbapi.com/?t=${filmList[i]}&apikey=${apiKey}`;
-    fetch(newQueryURL)
-        .then(function (response) {
-            return response.json();
-        })
-        .then((data) => {
+    const response = await fetch(newQueryURL)
+        // .then(function (response) {
+        //     return response.json();
+        // })
+        const data = await response.json();
+        // .then((data) => {
             const movie = {};
             movie.title = data.Title;
             movie.year = data.Year;
@@ -302,11 +303,15 @@ function seedMovieData(filmList) {
             movie.director = data.Director;
             movie.plot = data.Plot;
             jsonList.push(movie);
-            var movieList = JSON.stringify(jsonList)
-            fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
-        })
+            // var movieList = JSON.stringify(jsonList)
+            // fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
+        // })
         }
+        return jsonList;
     }
 
-seedMovieData(filmList2)
+seedMovieData(filmList2).then((data)=> {
+    movieList = JSON.stringify(data)
+    fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
+})
 
