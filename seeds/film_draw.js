@@ -2,7 +2,7 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-const apiKey = process.env.OMDB_API_KEY
+const apiKey = process.env.OMDB_API_KEY;
 
 //The following is a copy-paste taken from https://www.imdb.com/chart/top/
 var filmList =  `The Shawshank Redemption 	1. The Shawshank Redemption (1994) 	9.2 	
@@ -299,8 +299,9 @@ function seedMovieData(filmList) {
             movie.director = data.Director;
             movie.plot = data.Plot;
             jsonList.push(movie);
+            var movieList = JSON.stringify(jsonList)
+            fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
         })
-        .then(fs.writeFile('./seeds/movieData.json', JSON.stringify(jsonList), err => { if (err) {console.error(err);}}))
         }
     }
 
