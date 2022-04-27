@@ -3,8 +3,8 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-const apiKey = 'c3d2c14c'
-// process.env.OMDB_API_KEY;
+const apiKey = process.env.OMDB_API_KEY;
+
 
 //The following is a copy-paste taken from https://www.imdb.com/chart/top/
 var filmList =  `The Shawshank Redemption 	1. The Shawshank Redemption (1994) 	9.2 	
