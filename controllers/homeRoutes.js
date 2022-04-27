@@ -1,25 +1,29 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Review, User, Movie } = require('../models');
 const withAuth = require('../utils/auth');
 
+
+// home routes with be getting/rendering data to specific pages
+// this get route is getting all reviews on movies associated to the user
 router.get('/', async (req, res) => {
   try {
     // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
+    const reviewData = await Review.findAll({
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['userName'],
         },
       ],
     });
 
     // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const reviews = reviewData.map((review) => review.get({ plain: true }));
 
     // Pass serialized data and session flag into template
+    // What page do you want to render the reviews onto???????
     res.render('homepage', { 
-      projects, 
+      reviews, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -27,21 +31,22 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+// get review by id
+router.get('/review/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const reviewData = await Review.findByPk(req.params.id, {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['userName'],
         },
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const review = reviewData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
+    res.render('review', {
+      ...review,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -69,6 +74,8 @@ router.get('/profile', withAuth, async (req, res) => {
   }
 });
 
+
+// if the user is logged in, redirect to next page after login, if user is not logged in, redirect to login page.
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {

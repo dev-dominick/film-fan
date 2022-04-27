@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// create a new review,,,,, associating user id to review being created
 router.post('/', withAuth, async (req, res) => {
   try {
     const newReview = await Review.create({
@@ -15,6 +16,7 @@ router.post('/', withAuth, async (req, res) => {
   }
 });
 
+// delete review by id
 router.delete('/:id', withAuth, async (req, res) => {
   try {
     const reviewData = await review.destroy({
