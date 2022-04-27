@@ -3,7 +3,8 @@ require('dotenv').config();
 const fetch = require('node-fetch');
 const fs = require('fs');
 
-const apiKey = process.env.OMDB_API_KEY;
+const apiKey = 'c3d2c14c'
+// process.env.OMDB_API_KEY;
 
 //The following is a copy-paste taken from https://www.imdb.com/chart/top/
 var filmList =  `The Shawshank Redemption 	1. The Shawshank Redemption (1994) 	9.2 	
@@ -282,6 +283,14 @@ function listSlice(filmList, dotCount, num) {
         }
     }
 }
+filmList2[111]= 'L.A. Confidential'
+
+function searchTitle(title) {
+    title = title.toLowerCase();
+    title = title.replace(/[^A-Za-z0-9' ]/g,"");
+    const newTitle = title.split(" ")
+    return newTitle;
+}
 
 //Fetching data from OMDb, writing the result to the json file.
 const jsonList = []
@@ -296,6 +305,7 @@ async function seedMovieData(filmList) {
         // .then((data) => {
             const movie = {};
             movie.title = data.Title;
+            movie.searchTitle = searchTitle(data.Title)
             movie.year = data.Year;
             movie.rating = data.Rated;
             movie.genre = data.Genre;
