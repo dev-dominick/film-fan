@@ -1,4 +1,9 @@
-const apiKey = process.env.OMDB_API_KEY
+//Script used to populate the movieData.json file with the IMDb top 250 movies.
+require('dotenv').config();
+const fetch = require('node-fetch');
+const fs = require('fs');
+
+const apiKey = process.env.OMDB_API_KEY;
 
 //The following is a copy-paste taken from https://www.imdb.com/chart/top/
 var filmList =  `The Shawshank Redemption 	1. The Shawshank Redemption (1994) 	9.2 	
@@ -252,6 +257,7 @@ Rififi 	248. Rififi (1955) 	8.0
 Dances with Wolves 	249. Dances with Wolves (1990) 	8.0 	
 Kill Bill: Vol. 2 	250. Kill Bill: Vol. 2 (2004) 	8.0`
 
+//functions to take the above string and break it into an array of film titles that match the OMDb request standard.
 var filmList2 = filmList.split("(");
 
 filmList2[0] = "The Shawshank Redemption"
@@ -277,7 +283,35 @@ function listSlice(filmList, dotCount, num) {
     }
 }
 
-console.log(filmList2);
+//Fetching data from OMDb, writing the result to the json file.
+const jsonList = []
+async function seedMovieData(filmList) {
+    for (let i=0; i<filmList.length; i++) {
+    const newQueryURL = `https://www.omdbapi.com/?t=${filmList[i]}&apikey=${apiKey}`;
+    const response = await fetch(newQueryURL)
+        // .then(function (response) {
+        //     return response.json();
+        // })
+        const data = await response.json();
+        // .then((data) => {
+            const movie = {};
+            movie.title = data.Title;
+            movie.year = data.Year;
+            movie.rating = data.Rated;
+            movie.genre = data.Genre;
+            movie.poster = data.Poster;
+            movie.director = data.Director;
+            movie.plot = data.Plot;
+            jsonList.push(movie);
+            // var movieList = JSON.stringify(jsonList)
+            // fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
+        // })
+        }
+        return jsonList;
+    }
 
-// var newQueryURL = `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`
+seedMovieData(filmList2).then((data)=> {
+    movieList = JSON.stringify(data)
+    fs.writeFile('movieData.json', movieList, err => { if (err) {console.error(err);}})
+})
 
