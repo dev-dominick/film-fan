@@ -1,3 +1,4 @@
+//Script used to populate the movieData.json file with the IMDb top 250 movies.
 require('dotenv').config();
 const fetch = require('node-fetch');
 const fs = require('fs');
@@ -256,6 +257,7 @@ Rififi 	248. Rififi (1955) 	8.0
 Dances with Wolves 	249. Dances with Wolves (1990) 	8.0 	
 Kill Bill: Vol. 2 	250. Kill Bill: Vol. 2 (2004) 	8.0`
 
+//functions to take the above string and break it into an array of film titles that match the OMDb request standard.
 var filmList2 = filmList.split("(");
 
 filmList2[0] = "The Shawshank Redemption"
@@ -281,6 +283,7 @@ function listSlice(filmList, dotCount, num) {
     }
 }
 
+//Fetching data from OMDb, writing the result to the json file.
 const jsonList = []
 function seedMovieData(filmList) {
     for (i=0; i<filmList.length; i++) {
