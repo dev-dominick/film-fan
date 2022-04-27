@@ -15,4 +15,16 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+router.get('/', async (req,res) => {
+  try {
+    const movieData = await Movie.findAll({
+
+    });
+    res.json(movieData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+});
+
 module.exports = router;
