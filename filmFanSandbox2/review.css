@@ -1,0 +1,51 @@
+body {
+    background: rgb(92,9,121);
+background: linear-gradient(90deg, rgba(92,9,121,1) 0%, rgba(255,190,120,1) 0%, rgba(255,129,107,1) 70%);
+}
+
+.mainHeader {
+    justify-content: center;
+    text-align: center;
+    font-size: 6rem;
+}
+
+#titleRow {
+    margin: 30px;
+}
+
+.carousel-item {
+    max-height: 480px;
+    
+}
+
+h5 {
+    font-size: 40px;
+}
+
+.nav {
+    justify-content: flex-end;
+}
+
+.carousel {
+    padding: 30px;
+    border: 3px solid rgb(39, 39, 39);
+    border-radius: 20px;
+    background-color: rgb(39, 39, 39);
+}
+
+.btn {
+    background-color: rgb(39, 39, 39);
+    border: 1px solid rgb(39, 39, 39);
+    color: white;
+    margin: 5px;
+}
+
+.nav-link {
+    font-size: 20px;
+    color: rgb(39, 39, 39);
+}
+
+#reviewLabel {
+    font-size: 50px;
+    text-align: center;
+}
