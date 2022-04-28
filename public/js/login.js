@@ -25,7 +25,7 @@ const loginFormHandler = async (event) => {
 const createAccountFormHandler = async (event) => {
   event.preventDefault();
 
-  document.location.replace('/signUp');
+  document.location.replace('/signup');
 
 };
 
