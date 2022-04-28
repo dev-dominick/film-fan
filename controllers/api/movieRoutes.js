@@ -15,6 +15,8 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
+
+// /api/movies gets data back
 router.get('/', async (req,res) => {
   try {
     const movieData = await Movie.findAll({

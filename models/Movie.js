@@ -13,10 +13,10 @@ Movie.init(
     },
     title: {
       type: DataTypes.STRING,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
+      // references: {
+      //   model: 'user',
+      //   key: 'id',
+      // },
     },
     searchTitle: {
       type: DataTypes.STRING,
