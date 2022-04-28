@@ -19,4 +19,20 @@ Review.belongsTo(Movie, {
   foreignKey: 'movie_id'
 })
 
+User.belongsToMany(Movie, {
+  through: {
+    model: Review, 
+    unique: false
+
+  }
+})
+
+Movie.belongsToMany(User, {
+  through: {
+    model: Review, 
+    unique: false
+    
+  }
+})
+
 module.exports = { User, Review, Movie };
