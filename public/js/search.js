@@ -1,12 +1,14 @@
 const fetch = require('node-fetch');
 
 const getMovies = async () => {
-    const data = await fetch('/api/movies');
+    const data = await fetch(
+      "https://floating-depths-94622.herokuapp.com/api/movies"
+    );
     const movies = data.json()
     return movies
 }
 
-const movieList = getMovies();
+
 
 function searchTitle(title) {
     title = title.toLowerCase();
@@ -18,10 +20,13 @@ function searchTitle(title) {
 const searchFormHandler = async (event) => {
     event.preventDefault();
 
-    const searchResult = document.querySelector('#search-result').value.trim();
+    let searchResult = document.querySelector('#search-result').value.trim();
+    console.log(searchResult);
     searchResult = searchTitle(searchResult);
 
-    movieDB = getMovies();
+
+
+    const movieDB = getMovies();
     resultList = []
     for (let i=0; i<movieDB.length; i++) {
         const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
@@ -32,7 +37,7 @@ const searchFormHandler = async (event) => {
     if (resultList) {
         const passedValue = document.querySelector('#hidden-value');
         passedValue.setAttribute('value', `${searchResult}`);
-        document.location.replace('/results');
+        document.location.replace(`/results/${searchTitle}`);
     }
     else {
         alert('No film matching those terms! Please search again.')

@@ -60,14 +60,18 @@
             {{/each}}
           </div>
         </div>
+
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
+
+
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+
       </div>
     </div>
   </div>
@@ -79,13 +83,10 @@
     <div class="col-8">
 
       <div class="input-group" id="homeSearchBar">
-        <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
+        <input type="text" class="form-control" id="search-result">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
-            aria-haspopup="true" aria-expanded="false">By Title</button>
-          <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
-          </div>
+          <button class="btn btn-outline-secondary" type="button" id="search"
+             >By Title</button>
         </div>
       </div>
 
@@ -96,4 +97,4 @@
 
 
 
-<script src="../public/js/search.js"></script>
+<script src="/js/search.js"></script>
