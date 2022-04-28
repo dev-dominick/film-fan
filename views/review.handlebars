@@ -1,4 +1,3 @@
-
 <body>
     <nav class="nav">
         <a class="nav-link active" href="#">Home</a>
@@ -25,8 +24,8 @@
             <div class="col-8">
                 <form>
                     <div class="form-group">
-                        <label id="reviewLabel" for="exampleFormControlTextarea1">Add a Review</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <label id="reviewLabel" for="new_review">Add a Review</label>
+                        <textarea class="form-control" id="new_review" rows="3"></textarea>
                     </div>
                     <input class="btn btn-primary" type="submit" value="Submit">
                 </form>
@@ -34,3 +33,18 @@
             </div>
         </div>
     </div>
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                {{#each reviews as | review | }}
+                {{review.review_text}}
+                {{review.date_created}}
+                {{review.user.userName}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+
+    <script src="../public/js/review.js"></script>
