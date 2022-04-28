@@ -1,0 +1,36 @@
+
+<body>
+    <nav class="nav">
+        <a class="nav-link active" href="#">Home</a>
+        <a class="nav-link active" href="#">Logout</a>
+    </nav>
+
+    <div class="container currentMovieContainer">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h2 class="currentMovieTitle">{{movie.title}}</h2>
+                <p>{{movie.year}}</p>
+                <p>{{movie.rating}}</p>
+                <p>{{movie.genre}}</p>
+                <p>{{movie.director}}</p>
+                <p>{{movie.plot}}</p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form>
+                    <div class="form-group">
+                        <label id="reviewLabel" for="exampleFormControlTextarea1">Add a Review</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <input class="btn btn-primary" type="submit" value="Submit">
+                </form>
+
+            </div>
+        </div>
+    </div>
