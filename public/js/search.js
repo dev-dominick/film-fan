@@ -8,8 +8,6 @@ const getMovies = async () => {
 
 const movieList = getMovies();
 
-console.log(movieList);
-
 function searchTitle(title) {
     title = title.toLowerCase();
     title = title.replace(/[^A-Za-z0-9' ]/g,"");
@@ -20,7 +18,7 @@ function searchTitle(title) {
 const searchFormHandler = async (event) => {
     event.preventDefault();
 
-    const searchResult = document.querySelector('#search-input').value.trim();
+    const searchResult = document.querySelector('#search-result').value.trim();
     searchResult = searchTitle(searchResult);
 
     movieDB = getMovies();
@@ -31,39 +29,22 @@ const searchFormHandler = async (event) => {
             resultList.push(movieDB[i]);
         }
     }
-}
-
-function showResults(resultList) {
-    const resultGallery = document.querySelector('#gallery-list');
-    for (i=0; i<resultList.length; i++) {
-        const newLink = document.createElement('a')
-        const newCard = document.createElement('div');
-        const newPoster = document.createElement('img');
-        const newBody = document.createElement('div');
-        const newText = document.createElement('p');
-        
-        newText.textContent = resultList[i].title;
-
-        resultGallery.appendChild(newCard);
-        newCard.appendChild(newLink);
-        newLink.appendChild(newPoster);
-        newCard.appendChild(newBody);
-        newBody.appendChild(newText);
-
-        newCard.setAttribute('class', 'card');
-        newCard.setAttribute('style', 'width: 18rem;');
-        newLink.setAttribute('href', `/review/${resultList[i].id}`);
-        newPoster.setAttribute('class', 'card-img-top');
-        newPoster.setAtrribute('src', `${resultList[i].poster}`);
-        newPoster.setAtrribute('alt', `${resultList[i].title} film poster`);
-        newBody.setAttribute('class', 'card-body');
-        newText.setAttribute('class', 'card-text');
+    if (resultList) {
+        const passedValue = document.querySelector('#hidden-value');
+        passedValue.setAttribute('value', `${searchResult}`);
+        document.location.replace('/results');
+    }
+    else {
+        alert('No film matching those terms! Please search again.')
     }
 }
 
+document.querySelector('#search').addEventListener('click', searchFormHandler);
 
 
-//Dynamically create cards with search results
+
+
+
 
 
 

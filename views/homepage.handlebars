@@ -20,6 +20,10 @@
   </div>
 </div>
 {{/each}} --}}
+<form action='/results' method='GET'>
+    <input type='hidden' name='search-result' id='hidden-value'/>
+    <input type='submit' value = 'Send data'/>
+</form>
 
 <div class="jumbotron jumbotron-fluid justify-content-center" id="titleRow">
   <div class="container">
@@ -72,9 +76,9 @@
     <div class="col-8">
 
       <div class="input-group" id="homeSearchBar">
-        <input type="text" class="form-control" aria-label="Text input with dropdown button">
+        <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
         <div class="input-group-append">
-          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
             aria-haspopup="true" aria-expanded="false">By Title</button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
@@ -86,3 +90,5 @@
     </div>
   </div>
 </div>
+
+<script src="/js/search.js"></script>
