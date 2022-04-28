@@ -1,35 +1,22 @@
-
 <body>
-    <nav class="nav">
-        <a class="nav-link active" href="#">Logout</a>
-    </nav>
+
 
     <div class="jumbotron jumbotron-fluid justify-content-center" id="titleRow">
         <div class="container">
-            <h1 class="display-4 mainHeader">Search by Title</h1>
+            <h1 class="display-4 mainHeader">Search Results</h1>
         </div>
     </div>
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8">
-
-                <div class="input-group" id="homeSearchBar">
-                    <input type="text" class="form-control" aria-label="Text input with dropdown button">
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">By Title</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-8" id="gallery-list">
 
             </div>
         </div>
     </div>
 
-    <div class="container">
+
+    {{!-- <div class="container">
         <div class="row justify-content-center">
             <div class="col-8" id="resultsBox">
                 {{#each movies as | movie | }}
@@ -43,4 +30,7 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
+
+
+    <script src="../public/js/results.js"></script>

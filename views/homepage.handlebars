@@ -21,8 +21,8 @@
 </div>
 {{/each}} --}}
 <form action='/results' method='GET'>
-    <input type='hidden' name='search-result' id='hidden-value'/>
-    <input type='submit' value = 'Send data'/>
+  <input type='hidden' name='search-result' id='hidden-value' />
+  <input type='submit' value='Send data' />
 </form>
 
 <div class="jumbotron jumbotron-fluid justify-content-center" id="titleRow">
@@ -46,10 +46,14 @@
 
           {{#each movies as | movie | }}
           <div class="carousel-item active">
+<<<<<<< HEAD
+            <img class="d-block w-100" src="{{movie.poster}}" alt="Slide">
+=======
             <img class="d-block w-100"
               src="{{movie.poster}}"
               alt="{{movie.title}} film poster">
 
+>>>>>>> 51d5dce528cec5d3dc66f49f70b952cad97c913a
             <div class="carousel-caption d-none d-md-block">
               <h5>{{movie.title}}</h5>
               <button type="button" class="btn btn-info">Add Review</button>
@@ -74,6 +78,22 @@
 
 <div class="container">
         <div class="row justify-content-center">
+<<<<<<< HEAD
+          <div class="col-8">
+      
+            <div class="input-group" id="homeSearchBar">
+              <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
+                  aria-haspopup="true" aria-expanded="false">By Title</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
+                </div>
+              </div>
+            </div>
+      
+      
+=======
             <div class="col-8" id="titleSearch">
 
 
@@ -84,13 +104,19 @@
             aria-haspopup="true" aria-expanded="false">By Title</button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
+>>>>>>> 51d5dce528cec5d3dc66f49f70b952cad97c913a
           </div>
         </div>
       </div>
 
 
+<<<<<<< HEAD
+
+      <script src="../public/js/search.js"></script>
+=======
     </div>
   </div>
 </div>
 
 <script src="/js/search.js"></script>
+>>>>>>> 51d5dce528cec5d3dc66f49f70b952cad97c913a
