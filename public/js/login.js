@@ -15,15 +15,26 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
-      document.location.replace('/profile');
+      document.location.replace('/');
     } else {
       alert(response.statusText);
     }
   }
 };
 
+const createAccountFormHandler = async (event) => {
+  event.preventDefault();
+
+  document.location.replace('/signup');
+
+};
+
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
+
+document
+  .querySelector('.create-form')
+  .addEventListener('submit', createAccountFormHandler);
 
 
