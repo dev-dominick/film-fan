@@ -44,26 +44,25 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// Update review
-router.put("/:id", (req, res) => {
-  // update a category by its `id` value
-  Review.update({
-    where: {
-      id: req.params.id,
-      user_id: req.session.user_id,
-    },
-  })
-    .then((data) => {
-      if (!data) {
-        res.status(404).json({ message: "No review found." });
-        return;
-      }
-      res.json(data);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
+// update user review
+router.put("/:id", withAuth, async (req, res) => {
+  try {
+    const reviewUpdate = await Review.update({
+      where: {
+        id: req.params.id,
+        // user_id: req.session.user_id,
+      },
     });
+
+    if (!reviewUpdate) {
+      res.status(404).json({ message: "No review found with this id!" });
+      return;
+    }
+
+    res.status(200).json(reviewUpdate);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 
