@@ -2,6 +2,23 @@ const router = require('express').Router();
 const { Review } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+// get the movie by id for trailer
+router.get('/', async (req,res) => {
+  try {
+    const movieData = await Movie.findAll({
+
+    });
+    res.json(movieData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+
+});
+
+module.exports = router;
+
+
+
 // create a new review,,,,, associating user id to review being created
 router.post('/', withAuth, async (req, res) => {
   try {

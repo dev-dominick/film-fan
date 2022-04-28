@@ -20,6 +20,10 @@
   </div>
 </div>
 {{/each}} --}}
+<form action='/results' method='GET'>
+  <input type='hidden' name='search-result' id='hidden-value' />
+  <input type='submit' value='Send data' />
+</form>
 
 <div class="jumbotron jumbotron-fluid justify-content-center" id="titleRow">
   <div class="container">
@@ -42,9 +46,7 @@
 
           {{#each movies as | movie | }}
           <div class="carousel-item active">
-            <img class="d-block w-100"
-              src="{{movie.poster}}"
-              alt="Slide">
+            <img class="d-block w-100" src="{{movie.poster}}" alt="Slide">
             <div class="carousel-caption d-none d-md-block">
               <h5>{{movie.title}}</h5>
               <button type="button" class="btn btn-info">Add Review</button>
@@ -69,11 +71,24 @@
 
 <div class="container">
         <div class="row justify-content-center">
-            <div class="col-8" id="titleSearch">
-
-                <button type="button" class="btn btn-info" id="searchByTitleBtn">Search by Title</button>
-
-
+          <div class="col-8">
+      
+            <div class="input-group" id="homeSearchBar">
+              <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
+                  aria-haspopup="true" aria-expanded="false">By Title</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
+                </div>
+              </div>
             </div>
+      
+      
+          </div>
         </div>
-    </div>
+      </div>
+
+
+
+      <script src="../public/js/search.js"></script>
