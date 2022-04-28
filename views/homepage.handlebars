@@ -38,60 +38,62 @@
 
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
-          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class=""></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
 
-          {{#each movies as | movie | }}
+          {{#each movies as | movie key | }}
+          {{#if @first }}
           <div class="carousel-item active">
-            <img class="d-block w-100"
-              src="{{movie.poster}}"
-              alt="{{movie.title}} film poster">
+            {{else}}
+            <div class="carousel-item">
+              {{/if}}
+              <img class="d-block w-100" src="{{movie.poster}}" alt="{{movie.title}} film poster">
 
-            <div class="carousel-caption d-none d-md-block">
-              <h5>{{movie.title}}</h5>
-              <button type="button" class="btn btn-info">Add Review</button>
+              <div class="carousel-caption d-none d-md-block">
+                <h5>{{movie.title}}</h5>
+                <button type="button" class="btn btn-info">Add Review</button>
+              </div>
             </div>
+            {{/each}}
           </div>
-          {{/each}}
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
     </div>
   </div>
-</div>
 </div>
 
 
 <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-8">
-      
-            <div class="input-group" id="homeSearchBar">
-              <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
-                  aria-haspopup="true" aria-expanded="false">By Title</button>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
-                </div>
-              </div>
-            </div>
-      
-      
+  <div class="row justify-content-center">
+    <div class="col-8">
+
+      <div class="input-group" id="homeSearchBar">
+        <input type="text" class="form-control" aria-label="Text input with dropdown button" id="search-result">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" id="search"
+            aria-haspopup="true" aria-expanded="false">By Title</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">I'm Feeling Lucky</a>
           </div>
         </div>
       </div>
 
 
+    </div>
+  </div>
+</div>
 
-      <script src="../public/js/search.js"></script>
+
+
+<script src="../public/js/search.js"></script>
