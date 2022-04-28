@@ -17,7 +17,7 @@ const withAuth = require("../../utils/auth");
 
 
 // /api/movies gets data back
-router.get('/', async (req,res) => {
+router.get('/results/:searchresult', async (req,res) => {
   try {
     const movieData = await Movie.findAll({
 
