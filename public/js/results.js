@@ -28,7 +28,7 @@ function searchTitle(title) {
 }
 
 
-const searchResult2 = titleSearch(urlWhere);
+const searchResult2 = searchTitle(urlWhere);
 
 console.log(searchResult2);
 
