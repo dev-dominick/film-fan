@@ -5,7 +5,9 @@ console.log(searchResult);
 var searchResult = getParameterByName('search-result');
 
 const getMovies = async () => {
-    const data = await fetch('/api/movies');
+    const data = await fetch(
+      "https://floating-depths-94622.herokuapp.com/api/movies"
+    );
     const movies = data.json()
     return movies
 }
@@ -21,21 +23,21 @@ function searchTitle(title) {
     return newTitle;
 }
 
-const searchFormHandler = async (event) => {
-    event.preventDefault();
+// const searchFormHandler = async (event) => {
+//     event.preventDefault();
 
-    const searchResult = document.querySelector('#search-result').value.trim();
-    searchResult = searchTitle(searchResult);
+//     const searchResult = document.querySelector('#search-result').value.trim();
+//     searchResult = searchTitle(searchResult);
 
-    movieDB = getMovies();
-    resultList = []
-    for (let i=0; i<movieDB.length; i++) {
-        const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
-        if (intersection === searchResult) {
-            resultList.push(movieDB[i]);
-        }
-    }
-}
+//     movieDB = getMovies();
+//     resultList = []
+//     for (let i=0; i<movieDB.length; i++) {
+//         const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
+//         if (intersection === searchResult) {
+//             resultList.push(movieDB[i]);
+//         }
+//     }
+// }
 
 function showResults(resultList) {
     const resultGallery = document.querySelector('#gallery-list');
