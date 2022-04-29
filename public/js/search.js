@@ -4,6 +4,7 @@ const getMovies = async () => {
     const data = await fetch(
       "https://floating-depths-94622.herokuapp.com/api/movies"
     );
+    console.log({data});
     const movies = data.json()
     console.log(movies);
     return movies
