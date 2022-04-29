@@ -30,19 +30,26 @@ const searchFormHandler = async (event) => {
 
     const movieDB = await getMovies();
     resultList = []
-    for (let i=0; i<movieDB.length; i++) {
-        let findMovie = movieDB[i].searchTitle
-        console.log(movieDB[i].searchTitle);
-        const intersection = findMovie.filter(element => {
-            console.log(element);
+    let resultsArray = movieDB.filter(movie => {
+        searchResult2.forEach(word => {
+            movie.searchTitle.includes(word) 
+        });
+    })
+    console.log(resultsArray);
 
-            return searchResult2.includes(element)});
-        if (intersection === searchResult2) {
-            resultList.push(movieDB[i]);
-        }
-    }
-    console.log(resultList);
-    if (resultList.length) {
+    // for (let i=0; i<movieDB.length; i++) {
+    //     let findMovie = movieDB[i].searchTitle
+    //     console.log(movieDB[i].searchTitle);
+    //     const intersection = findMovie.filter(element => {
+    //         console.log(element);
+
+    //         return searchResult2.includes(element)});
+    //     if (intersection === searchResult2) {
+    //         resultList.push(movieDB[i]);
+    //     }
+    // }
+    // console.log(resultList);
+    if (resultsArray.length) {
         document.location.replace(`/results/${searchResult}`);
     }
     else {
