@@ -36,8 +36,6 @@ const searchFormHandler = async (event) => {
         }
     }
     if (resultList) {
-        // const passedValue = document.querySelector('#hidden-value');
-        // passedValue.setAttribute('value', `${searchResult}`);
         document.location.replace(`/results/${searchTitle}`);
     }
     else {
@@ -49,7 +47,8 @@ searchBtn.addEventListener('click', searchFormHandler);
 
 
 
-
+        // const passedValue = document.querySelector('#hidden-value');
+        // passedValue.setAttribute('value', `${searchResult}`);
 
 
 
