@@ -48,12 +48,12 @@ const searchFormHandler = async (event) => {
     //     }
     // }
     // console.log(resultList);
-    if (resultsArray.length) {
-        document.location.replace(`/results/${searchResult}`);
-    }
-    else {
-        alert('No film matching those terms! Please search again.')
-    }
+    // if (resultsArray.length) {
+    //     document.location.replace(`/results/${searchResult}`);
+    // }
+    // else {
+    //     alert('No film matching those terms! Please search again.')
+    // }
 }
 
 searchBtn.addEventListener('click', searchFormHandler);
