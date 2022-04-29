@@ -38,7 +38,27 @@ async function generateGal() {
     let resultsArray = searchResult2.map((word) => {
         return movieDB.filter((movie) => movie.searchTitle.includes(word));
     });
-    showResults(resultsArray);
+
+    let returnArray = [];
+    
+    for (i=0; i<resultsArray.length; i++) {
+        for (j=0; j<resultsArray[i].length; j++) {
+            let boolArray = []
+            if (!returnArray.lenth) {
+                returnArray.push(resultsArray[i][j]);
+            }
+            else {
+                for (k=0; k<returnArray.length; k++) {
+                    boolArray.push(returnArray[k].title === resultsArray[i][j].title);
+                }
+            }
+            if (!boolArray.includes(true)) {
+                returnArray.push(resultsArray[i][j]);
+            }
+        }
+    }
+
+    showResults(returnArray);
 };
 
 
@@ -72,6 +92,7 @@ function showResults(resultList) {
     }
 }
 
+generateGal();
 //Needs https://stackoverflow.com/questions/44342226/next-js-error-only-absolute-urls-are-supported
 //Needs DB and server to be spun up
 

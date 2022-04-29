@@ -34,22 +34,35 @@ const searchFormHandler = async (event) => {
         return movieDB.filter(movie => movie.searchTitle.includes(word) 
         )})
     )
+    let returnArray = [];
+    
+    for (i=0; i<resultsArray.length; i++) {
+        for (j=0; j<resultsArray[i].length; j++) {
+            let boolArray = []
+            if (!returnArray.lenth) {
+                returnArray.push(resultsArray[i][j]);
+            }
+            else {
+                for (k=0; k<returnArray.length; k++) {
+                    boolArray.push(returnArray[k].title === resultsArray[i][j].title);
+                }
+            }
+            if (!boolArray.includes(true)) {
+                returnArray.push(resultsArray[i][j]);
+            }
+        }
+    }
     console.log(resultsArray);
+    console.log(returnArray);
+
+    if (resultsArray.length) {
+        document.location.replace(`/results/${searchResult}`);
+    }
+    else {
+        alert('No film matching those terms! Please search again.')
+    }
 
 
 }
 
 searchBtn.addEventListener('click', searchFormHandler);
-
-
-
-        // const passedValue = document.querySelector('#hidden-value');
-        // passedValue.setAttribute('value', `${searchResult}`);
-
-
-
-
-//Needs https://stackoverflow.com/questions/44342226/next-js-error-only-absolute-urls-are-supported
-//Needs DB and server to be spun up
-
-//Create cards with info

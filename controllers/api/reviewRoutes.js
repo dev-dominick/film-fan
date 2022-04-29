@@ -34,15 +34,15 @@ console.log(newReview)
 });
 
 // find all reviews by movie ID
-router.get("/:id", async (req, res) => {
-  try {
-    const allReviews = await Review.findAll();
+// router.get("/:id", async (req, res) => {
+//   try {
+//     const allReviews = await Review.findAll();
 
-    res.status(200).json(allReviews);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+//     res.status(200).json(allReviews);
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 // update user review
 router.put("/:id", withAuth, async (req, res) => {
