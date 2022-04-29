@@ -31,8 +31,9 @@ const searchFormHandler = async (event) => {
     const movieDB = await getMovies();
     resultList = []
     for (let i=0; i<movieDB.length; i++) {
+        let findMovie = movieDB[i].searchTitle
         console.log(movieDB[i].searchTitle);
-        const intersection = movieDB[i].searchTitle.filter(element => {
+        const intersection = findMovie.filter(element => {
             console.log(element);
 
             return searchResult2.includes(element)});
