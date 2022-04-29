@@ -1,59 +1,79 @@
-const fetch = require('node-fetch');
-
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
-}
-
-var searchResult = getParameterByName('search-result');
+const urlArray = window.location.href.split("/");
+var urlWhere = urlArray.at(-1);
+const finalURL = urlWhere.replace("20", " ")
+console.log(urlWhere);
+// var searchResult = window.location.search;
+// console.log(searchResult);
+// var searchResult = getParameterByName('search-result');
 
 const getMovies = async () => {
-    const data = await fetch('/api/movies');
-    const movies = data.json()
-    return movies
-}
+    console.log("ding ding");
+    let movies = await fetch(
+        "https://floating-depths-94622.herokuapp.com/api/movies"
+    )
+        .then((data) => data.json())
+        .then((movieData) => movieData);
+
+    return movies;
+};
 
 const movieList = getMovies();
 
-console.log(movieList);
+
 
 function searchTitle(title) {
     title = title.toLowerCase();
-    title = title.replace(/[^A-Za-z0-9' ]/g,"");
-    const newTitle = title.split(" ")
+    title = title.replace(/[^A-Za-z0-9' ]/g, "");
+    const newTitle = title.split(" ");
     return newTitle;
 }
 
-const searchFormHandler = async (event) => {
-    event.preventDefault();
 
-    const searchResult = document.querySelector('#search-result').value.trim();
-    searchResult = searchTitle(searchResult);
+const searchResult2 = searchTitle(finalURL);
 
-    movieDB = getMovies();
-    resultList = []
-    for (let i=0; i<movieDB.length; i++) {
-        const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
-        if (intersection === searchResult) {
-            resultList.push(movieDB[i]);
+console.log(searchResult2);
+
+async function generateGal() {
+    const movieDB = await getMovies();
+    resultList = [];
+    let resultsArray = searchResult2.map((word) => {
+        return movieDB.filter((movie) => movie.searchTitle.includes(word));
+    });
+
+    let returnArray = [];
+    
+    for (i=0; i<resultsArray.length; i++) {
+        for (j=0; j<resultsArray[i].length; j++) {
+            let boolArray = []
+            if (!returnArray.lenth) {
+                returnArray.push(resultsArray[i][j]);
+            }
+            else {
+                for (k=0; k<returnArray.length; k++) {
+                    boolArray.push(returnArray[k].title === resultsArray[i][j].title);
+                }
+            }
+            if (!boolArray.includes(true)) {
+                returnArray.push(resultsArray[i][j]);
+            }
         }
     }
-}
+
+    showResults(returnArray);
+};
+
+
+
 
 function showResults(resultList) {
-    const resultGallery = document.querySelector('#gallery-list');
-    for (i=0; i<resultList.length; i++) {
-        const newLink = document.createElement('a')
-        const newCard = document.createElement('div');
-        const newPoster = document.createElement('img');
-        const newBody = document.createElement('div');
-        const newText = document.createElement('p');
-        
+    const resultGallery = document.querySelector("#gallery-list");
+    for (i = 0; i < resultList.length; i++) {
+        const newLink = document.createElement("a");
+        const newCard = document.createElement("div");
+        const newPoster = document.createElement("img");
+        const newBody = document.createElement("div");
+        const newText = document.createElement("p");
+
         newText.textContent = resultList[i].title;
 
         resultGallery.appendChild(newCard);
@@ -62,18 +82,18 @@ function showResults(resultList) {
         newCard.appendChild(newBody);
         newBody.appendChild(newText);
 
-        newCard.setAttribute('class', 'card');
-        newCard.setAttribute('style', 'width: 18rem;');
-        newLink.setAttribute('href', `/review/${resultList[i].id}`);
-        newPoster.setAttribute('class', 'card-img-top');
-        newPoster.setAtrribute('src', `${resultList[i].poster}`);
-        newPoster.setAtrribute('alt', `${resultList[i].title} film poster`);
-        newBody.setAttribute('class', 'card-body');
-        newText.setAttribute('class', 'card-text');
+        newCard.setAttribute("class", "card");
+        newCard.setAttribute("style", "width: 18rem;");
+        newLink.setAttribute("href", `/review/${resultList[i].id}`);
+        newPoster.setAttribute("class", "card-img-top");
+        newPoster.setAttribute("src", `${resultList[i].poster}`);
+        newPoster.setAttribute("alt", `${resultList[i].title} film poster`);
+        newBody.setAttribute("class", "card-body");
+        newText.setAttribute("class", "card-text");
     }
 }
 
-
+generateGal();
 //Needs https://stackoverflow.com/questions/44342226/next-js-error-only-absolute-urls-are-supported
 //Needs DB and server to be spun up
 

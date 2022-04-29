@@ -30,11 +30,11 @@ const createAccountFormHandler = async (event) => {
 };
 
 document
-  .querySelector('#loginForm')
-  .addEventListener('submit', loginFormHandler);
+  .querySelector('.login-form')
+  .addEventListener('click', loginFormHandler);
 
 document
   .querySelector('.create-form')
-  .addEventListener('submit', createAccountFormHandler);
+  .addEventListener('click', createAccountFormHandler);
 
 
