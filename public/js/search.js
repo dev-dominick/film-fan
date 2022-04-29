@@ -35,7 +35,8 @@ const searchFormHandler = async (event) => {
             resultList.push(movieDB[i]);
         }
     }
-    if (resultList) {
+    console.log(resultList);
+    if (resultList.length) {
         document.location.replace(`/results/${searchResult}`);
     }
     else {
