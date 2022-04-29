@@ -1,4 +1,3 @@
-const fetch = require('node-fetch');
 
 const getMovies = async () => {
     const data = await fetch(
@@ -16,9 +15,11 @@ function searchTitle(title) {
     const newTitle = title.split(" ")
     return newTitle;
 }
-
+const searchBtn = document.getElementById('search')
 const searchFormHandler = async (event) => {
     event.preventDefault();
+
+    console.log('click');
 
     let searchResult = document.querySelector('#search-result').value.trim();
     console.log(searchResult);
@@ -44,7 +45,7 @@ const searchFormHandler = async (event) => {
     }
 }
 
-document.querySelector('#search').addEventListener('click', searchFormHandler);
+searchBtn.addEventListener('click', searchFormHandler);
 
 
 
