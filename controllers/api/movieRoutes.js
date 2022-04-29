@@ -18,9 +18,12 @@ const withAuth = require("../../utils/auth");
 
 // /api/movies gets data back
 router.get('/results/:searchresult', async (req,res) => {
+  const searchedMovie = JSON.stringify(req.params.searchresult)
   try {
     const movieData = await Movie.findAll({
-    
+      where: {
+        title: searchedMovie,
+      }
     });
     res.json(movieData);
       res.render("results", {
