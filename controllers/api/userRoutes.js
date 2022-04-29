@@ -34,8 +34,9 @@ router.get('/', async (req, res) => {
 
 // User logging in
 router.post('/login', async (req, res) => {
-  try { console.log("here");
-    const userData = await User.findOne({ where: { userName: req.body.username } });
+  try {
+    const userData = await User.findOne({ where: { userName: req.body.userName } });
+
 
 
     if (!userData) {
