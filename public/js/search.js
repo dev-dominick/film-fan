@@ -30,8 +30,8 @@ const searchFormHandler = async (event) => {
 
     const movieDB = await getMovies();
     resultList = []
-    let resultsArray = movieDB.filter(movie => {
-        return searchResult2.map(word => movie.searchTitle.includes(word) 
+    let resultsArray = searchResult2.map(word => {
+        return movieDB.filter(movie => movie.searchTitle.includes(word) 
         );
     })
     console.log(resultsArray);
