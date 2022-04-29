@@ -86,8 +86,8 @@ function showResults(resultList) {
         newCard.setAttribute("style", "width: 18rem;");
         newLink.setAttribute("href", `/review/${resultList[i].id}`);
         newPoster.setAttribute("class", "card-img-top");
-        newPoster.setAtrribute("src", `${resultList[i].poster}`);
-        newPoster.setAtrribute("alt", `${resultList[i].title} film poster`);
+        newPoster.setAttribute("src", `${resultList[i].poster}`);
+        newPoster.setAttribute("alt", `${resultList[i].title} film poster`);
         newBody.setAttribute("class", "card-body");
         newText.setAttribute("class", "card-text");
     }
