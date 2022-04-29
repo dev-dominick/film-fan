@@ -31,9 +31,8 @@ const searchFormHandler = async (event) => {
     const movieDB = await getMovies();
     resultList = []
     let resultsArray = movieDB.filter(movie => {
-        searchResult2.forEach(word => {
-            movie.searchTitle.includes(word) 
-        });
+        searchResult2.map(word => movie.searchTitle.includes(word) 
+        );
     })
     console.log(resultsArray);
 
