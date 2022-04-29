@@ -9,7 +9,7 @@ const getMovies = async () => {
 
 
 
-function searchTitle(title) {
+function titleSearch(title) {
     title = title.toLowerCase();
     title = title.replace(/[^A-Za-z0-9' ]/g,"");
     const newTitle = title.split(" ")
@@ -23,20 +23,20 @@ const searchFormHandler = async (event) => {
 
     let searchResult = document.querySelector('#search-result').value.trim();
     console.log(searchResult);
-    searchResult = searchTitle(searchResult);
+    const searchResult2 = titleSearch(searchResult);
 
 
 
     const movieDB = getMovies();
     resultList = []
     for (let i=0; i<movieDB.length; i++) {
-        const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
-        if (intersection === searchResult) {
+        const intersection = movieDB[i].searchTitle.filter(element => searchResult2.includes(element));
+        if (intersection === searchResult2) {
             resultList.push(movieDB[i]);
         }
     }
     if (resultList) {
-        document.location.replace(`/results/${searchTitle}`);
+        document.location.replace(`/results/${searchResult}`);
     }
     else {
         alert('No film matching those terms! Please search again.')
