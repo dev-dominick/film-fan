@@ -1,5 +1,6 @@
 const urlArray = window.location.href.split("/");
-const urlWhere = urlArray.at(-1);
+var urlWhere = urlArray.at(-1);
+const finalURL = urlWhere.replace("20", " ")
 console.log(urlWhere);
 // var searchResult = window.location.search;
 // console.log(searchResult);
@@ -12,13 +13,13 @@ const getMovies = async () => {
     )
         .then((data) => data.json())
         .then((movieData) => movieData);
-    console.log({ movies });
+
     return movies;
 };
 
 const movieList = getMovies();
 
-console.log(movieList);
+
 
 function searchTitle(title) {
     title = title.toLowerCase();
