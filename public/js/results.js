@@ -1,7 +1,7 @@
-const fetch = require('node-fetch');
+
 
 var searchResult = window.location.search;
-
+console.log(searchResult);
 var searchResult = getParameterByName('search-result');
 
 const getMovies = async () => {
