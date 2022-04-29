@@ -1,17 +1,17 @@
 //npm package movie-trailer download
 
-const movieTrailer = require( 'movie-trailer' )
-var embed = require("embed-video")
+// const movieTrailer = require( 'movie-trailer' )
+// var embed = require("embed-video")
 
-async function getTrailer () {
-  let trailerTitle = document.getElementById("currentMovieTitle").innerHTML;
-  const trailerURL = await movieTrailer(trailerTitle);
+// async function getTrailer () {
+//   let trailerTitle = document.getElementById("currentMovieTitle").innerHTML;
+//   const trailerURL = await movieTrailer(trailerTitle);
 
-  const trailerSpace = document.querySelector('.currentMovieTitle');
-  const embedURL = embed(trailerURL);
+//   const trailerSpace = document.querySelector('.currentMovieTitle');
+//   const embedURL = embed(trailerURL);
 
 
-}
+// }
 
 
  
