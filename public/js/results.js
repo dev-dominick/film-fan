@@ -6,11 +6,14 @@ console.log(urlWhere);
 // var searchResult = getParameterByName('search-result');
 
 const getMovies = async () => {
-  const data = await fetch(
-    "https://floating-depths-94622.herokuapp.com/api/movies"
-  );
-  const movies = data.json();
-  return movies;
+    console.log("ding ding");
+    let movies = await fetch(
+        "https://floating-depths-94622.herokuapp.com/api/movies"
+    )
+        .then((data) => data.json())
+        .then((movieData) => movieData);
+    console.log({ movies });
+    return movies;
 };
 
 const movieList = getMovies();
@@ -18,54 +21,55 @@ const movieList = getMovies();
 console.log(movieList);
 
 function searchTitle(title) {
-  title = title.toLowerCase();
-  title = title.replace(/[^A-Za-z0-9' ]/g, "");
-  const newTitle = title.split(" ");
-  return newTitle;
+    title = title.toLowerCase();
+    title = title.replace(/[^A-Za-z0-9' ]/g, "");
+    const newTitle = title.split(" ");
+    return newTitle;
 }
 
-// const searchFormHandler = async (event) => {
-//     event.preventDefault();
 
-//     const searchResult = document.querySelector('#search-result').value.trim();
-//     searchResult = searchTitle(searchResult);
+const searchResult2 = titleSearch(urlWhere);
 
-//     movieDB = getMovies();
-//     resultList = []
-//     for (let i=0; i<movieDB.length; i++) {
-//         const intersection = movieDB[i].searchTitle.filter(element => searchResult.includes(element));
-//         if (intersection === searchResult) {
-//             resultList.push(movieDB[i]);
-//         }
-//     }
-// }
+console.log(searchResult2);
+
+async function generateGal() {
+    const movieDB = await getMovies();
+    resultList = [];
+    let resultsArray = searchResult2.map((word) => {
+        return movieDB.filter((movie) => movie.searchTitle.includes(word));
+    });
+    showResults(resultsArray);
+};
+
+
+
 
 function showResults(resultList) {
-  const resultGallery = document.querySelector("#gallery-list");
-  for (i = 0; i < resultList.length; i++) {
-    const newLink = document.createElement("a");
-    const newCard = document.createElement("div");
-    const newPoster = document.createElement("img");
-    const newBody = document.createElement("div");
-    const newText = document.createElement("p");
+    const resultGallery = document.querySelector("#gallery-list");
+    for (i = 0; i < resultList.length; i++) {
+        const newLink = document.createElement("a");
+        const newCard = document.createElement("div");
+        const newPoster = document.createElement("img");
+        const newBody = document.createElement("div");
+        const newText = document.createElement("p");
 
-    newText.textContent = resultList[i].title;
+        newText.textContent = resultList[i].title;
 
-    resultGallery.appendChild(newCard);
-    newCard.appendChild(newLink);
-    newLink.appendChild(newPoster);
-    newCard.appendChild(newBody);
-    newBody.appendChild(newText);
+        resultGallery.appendChild(newCard);
+        newCard.appendChild(newLink);
+        newLink.appendChild(newPoster);
+        newCard.appendChild(newBody);
+        newBody.appendChild(newText);
 
-    newCard.setAttribute("class", "card");
-    newCard.setAttribute("style", "width: 18rem;");
-    newLink.setAttribute("href", `/review/${resultList[i].id}`);
-    newPoster.setAttribute("class", "card-img-top");
-    newPoster.setAtrribute("src", `${resultList[i].poster}`);
-    newPoster.setAtrribute("alt", `${resultList[i].title} film poster`);
-    newBody.setAttribute("class", "card-body");
-    newText.setAttribute("class", "card-text");
-  }
+        newCard.setAttribute("class", "card");
+        newCard.setAttribute("style", "width: 18rem;");
+        newLink.setAttribute("href", `/review/${resultList[i].id}`);
+        newPoster.setAttribute("class", "card-img-top");
+        newPoster.setAtrribute("src", `${resultList[i].poster}`);
+        newPoster.setAtrribute("alt", `${resultList[i].title} film poster`);
+        newBody.setAttribute("class", "card-body");
+        newText.setAttribute("class", "card-text");
+    }
 }
 
 //Needs https://stackoverflow.com/questions/44342226/next-js-error-only-absolute-urls-are-supported

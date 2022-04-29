@@ -29,31 +29,14 @@ const searchFormHandler = async (event) => {
     console.log(searchResult2);
 
     const movieDB = await getMovies();
-    resultList = []
-    let resultsArray = searchResult2.map(word => {
+    resultsArray = [];
+    resultsArray.push(searchResult2.map(word => {
         return movieDB.filter(movie => movie.searchTitle.includes(word) 
-        );
-    })
+        )})
+    )
     console.log(resultsArray);
 
-    // for (let i=0; i<movieDB.length; i++) {
-    //     let findMovie = movieDB[i].searchTitle
-    //     console.log(movieDB[i].searchTitle);
-    //     const intersection = findMovie.filter(element => {
-    //         console.log(element);
 
-    //         return searchResult2.includes(element)});
-    //     if (intersection === searchResult2) {
-    //         resultList.push(movieDB[i]);
-    //     }
-    // }
-    // console.log(resultList);
-    // if (resultsArray.length) {
-    //     document.location.replace(`/results/${searchResult}`);
-    // }
-    // else {
-    //     alert('No film matching those terms! Please search again.')
-    // }
 }
 
 searchBtn.addEventListener('click', searchFormHandler);
