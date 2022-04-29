@@ -20,9 +20,13 @@ const withAuth = require("../../utils/auth");
 router.get('/results/:searchresult', async (req,res) => {
   try {
     const movieData = await Movie.findAll({
-
+    
     });
     res.json(movieData);
+      res.render("results", {
+        movieData,
+        logged_in: req.session.logged_in,
+      });
   } catch (err) {
     res.status(500).json(err);
   }
