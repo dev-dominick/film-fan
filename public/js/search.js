@@ -1,5 +1,6 @@
 
 const getMovies = async () => {
+    console.log("ding ding");
     const data = await fetch(
       "https://floating-depths-94622.herokuapp.com/api/movies"
     );
