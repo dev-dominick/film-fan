@@ -3,6 +3,16 @@
 const movieTrailer = require( 'movie-trailer' )
 var embed = require("embed-video")
 
+async function getTrailer () {
+  let trailerTitle = document.getElementById("currentMovieTitle").innerHTML;
+  const trailerURL = await movieTrailer(trailerTitle);
+
+  const trailerSpace = document.querySelector('.currentMovieTitle');
+  const embedURL = embed(trailerURL);
+
+
+}
+
 
  
 
@@ -23,7 +33,8 @@ const newFormHandler = async (event) => {
       });
   
       if (response.ok) {
-        document.location.replace('/profile');
+        const filmId = document.querySelector('#movieID').value.trim();
+        document.location.replace(`/review/${filmId}`);
       } else {
         alert('Failed to create project');
       }
