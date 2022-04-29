@@ -4,6 +4,7 @@ const getMovies = async () => {
       "https://floating-depths-94622.herokuapp.com/api/movies"
     );
     const movies = data.json()
+    console.log(movies);
     return movies
 }
 
@@ -25,7 +26,7 @@ const searchFormHandler = async (event) => {
     console.log(searchResult);
     const searchResult2 = titleSearch(searchResult);
 
-
+    console.log(searchResult2);
 
     const movieDB = getMovies();
     resultList = []
