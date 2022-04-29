@@ -29,7 +29,7 @@ function searchTitle(title) {
 }
 
 
-const searchResult2 = searchTitle(urlWhere);
+const searchResult2 = searchTitle(finalURL);
 
 console.log(searchResult2);
 
